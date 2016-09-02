@@ -1,0 +1,72 @@
+# -*-perl-*-
+
+package.StarportVulnerabilityScanner = {
+
+     interfaces = (1.0);
+ 
+    deploy = {
+        generic = true;
+    };
+
+    dependencies = {
+        1.0 = {
+            StarportFrontendServiceJavaClient = 1.0;
+            CoralClientBuilder = 1.0;
+            GoogleGuava = r19;
+
+
+            Balsa = 1.0;
+            Jackson = 1.8;
+
+        };
+    };
+    runtime-dependencies = {
+        1.0 = {
+            StarportFrontendServiceClientConfig = 1.0;
+            AmazonCACerts = 1.0;
+            JDK8 = 1.0;
+            CoralClientHttp = 1.0;
+            CoralRpcSupport = 1.0;
+
+            # If you're building a library, you don't need a runtime
+            # dependency on JDK. If you're writing a top-level
+            # package, uncomment the following line to add a
+            # dependency on JDK
+            # JDK8 = 1.0;
+        };
+    };
+
+    test-dependencies = {
+        1.0 = {
+            junit = 4.11;
+            Mockito = 1.10.x;
+        };
+    };
+
+    build-environment = {
+        chroot = basic;
+        network-access = blocked;
+    };
+    
+    build-system = happytrails;
+    build-tools = {
+
+        1.0 = {
+          StarportCheckstyle = 1.0;
+          HappierTrails                = 3.3;
+          JDK8                         = 1.0;
+          Lombok                       = 1.16.x;
+          LombokUtils                  = 1.1;
+          StarportFrontendServiceModel = 1.0;
+          CoralConfig                  = 1.0;
+
+        };
+    };
+#
+
+    # For more information on how to declare targets for HappyTrails packages
+    # see: https://w.amazon.com/?BrazilBuildSystem/HappyTrails/GettingStarted
+    targets = {
+        StarportVulnerabilityScanner-1.0 = { type = javalibrary; };
+    };
+};
